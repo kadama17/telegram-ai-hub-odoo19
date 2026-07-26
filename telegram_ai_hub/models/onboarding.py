@@ -1,4 +1,4 @@
-from datetime import timedelta
+from datetime import datetime, timedelta
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
@@ -25,7 +25,7 @@ class TelegramHubDashboard(models.TransientModel):
     @api.model
     def _dashboard_values(self):
         self = self.sudo()
-        company = self.env.company
+        company = self.env.user.company_id
         connections = self.env["rb.messaging.connection"].search([
             ("company_id", "=", company.id),
             ("channel_code", "=", "telegram"),
@@ -48,7 +48,7 @@ class TelegramHubDashboard(models.TransientModel):
             event_domain + [("state", "=", "failed")]
         )
         completed_events = processed_events + failed_events
-        now = fields.Datetime.now()
+        now = datetime.now()
         return {
             "connection_count": len(connections),
             "active_bot_count": len(active),
@@ -101,7 +101,7 @@ class TelegramHubDashboard(models.TransientModel):
         self = self.sudo()
         values = self._dashboard_values()
         connections = self.env["rb.messaging.connection"].search([
-            ("company_id", "=", self.env.company.id),
+            ("company_id", "=", self.env.user.company_id.id),
             ("channel_code", "=", "telegram"),
         ])
         today = fields.Date.context_today(self)
@@ -110,7 +110,7 @@ class TelegramHubDashboard(models.TransientModel):
             day = today - timedelta(days=offset)
             next_day = day + timedelta(days=1)
             domain = [
-                ("company_id", "=", self.env.company.id),
+                ("company_id", "=", self.env.user.company_id.id),
                 ("connection_id", "in", connections.ids),
                 ("create_date", ">=", fields.Datetime.to_string(day)),
                 ("create_date", "<", fields.Datetime.to_string(next_day)),
@@ -152,7 +152,7 @@ class TelegramOnboardingWizard(models.TransientModel):
         ("done", "Finish"),
     ], default="welcome", required=True)
     company_id = fields.Many2one(
-        "res.company", required=True, default=lambda self: self.env.company
+        "res.company", required=True, default=lambda self: self.env.user.company_id
     )
     connection_name = fields.Char(default="Telegram AI Bot", required=True)
     bot_token = fields.Char(string="BotFather Token")

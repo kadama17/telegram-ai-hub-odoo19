@@ -1,7 +1,7 @@
 import json
 import html
 import re
-import secrets
+import uuid
 from urllib.parse import quote_plus
 
 import requests
@@ -100,7 +100,7 @@ class MessagingConnection(models.Model):
 
     bot_token = fields.Char(groups="telegram_ai_hub.group_messaging_technical")
     bot_username = fields.Char(readonly=True)
-    telegram_webhook_secret = fields.Char(default=lambda self: secrets.token_urlsafe(24), groups="telegram_ai_hub.group_messaging_technical")
+    telegram_webhook_secret = fields.Char(default=lambda self: uuid.uuid4().hex, groups="telegram_ai_hub.group_messaging_technical")
     allow_private = fields.Boolean(default=True)
     allow_groups = fields.Boolean(default=False)
     allow_channels = fields.Boolean(default=False)
@@ -205,7 +205,7 @@ class MessagingTelegramUser(models.Model):
         help="Odoo access rights of this user are applied in addition to the permissions below.",
     )
     company_id = fields.Many2one(
-        "res.company", required=True, default=lambda self: self.env.company, index=True
+        "res.company", required=True, default=lambda self: self.env.user.company_id, index=True
     )
     active = fields.Boolean(default=True)
     permission_contacts = fields.Boolean(string="Manage contacts")
