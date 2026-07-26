@@ -1,0 +1,39 @@
+1
+00:00:00,000 --> 00:00:12,402
+Welcome to Telegram AI Hub for Odoo 19. This application lets your employees retrieve Odoo information and execute business actions directly from Telegram, using text or voice messages.
+
+2
+00:00:12,702 --> 00:00:27,982
+The dashboard provides an immediate overview of conversations, incoming and outgoing messages, authorized users, thirty-day activity, success rate, and recent errors. Every statistic is calculated from your Odoo database.
+
+3
+00:00:28,282 --> 00:00:41,915
+To get started, open the setup assistant. It guides you through creating a bot with BotFather, validating the token, installing the secure webhook, configuring OpenAI, and authorizing your first administrator.
+
+4
+00:00:42,215 --> 00:00:57,219
+In the Telegram connection form, enter the token supplied by BotFather. Test Connection immediately validates the bot identity. Install Webhook then configures the HTTPS endpoint and confirms that Telegram registered it correctly.
+
+5
+00:00:57,519 --> 00:01:12,709
+Under AI Providers, enter your own OpenAI API key. You can select the response model, audio transcription model, timeout, and system instructions. The test action provides a clear confirmation when the connection succeeds.
+
+6
+00:01:13,009 --> 00:01:30,582
+Next, add the employees who may use the bot. Identity verification relies on the permanent numeric Telegram user ID. Each person is linked to an Odoo user and receives explicit permissions for contacts, CRM, sales, invoices, and other business data.
+
+7
+00:01:30,882 --> 00:01:46,095
+Automations handle commands such as start and help, keywords, buttons, and free-form messages. The AI Assistant step can only call approved Odoo tools. It cannot run arbitrary code or bypass the permissions assigned to the employee.
+
+8
+00:01:46,395 --> 00:02:01,956
+All conversations are displayed in a kanban organized by status. The bot can process a request automatically, wait for more information, or transfer the conversation to a human operator. The operator can return control to the bot at any time.
+
+9
+00:02:02,256 --> 00:02:17,605
+The message history shows the date, conversation, direction, message type, content, and delivery status. This gives administrators a complete audit trail of incoming requests, outgoing replies, and processing errors.
+
+10
+00:02:17,905 --> 00:02:39,830
+From Telegram, an employee can request unpaid invoices, sales order lines, product stock, CRM opportunities, payments, appointments, or a business summary. Depending on their permissions, they can also create contacts and opportunities. Telegram AI Hub turns Telegram into a secure and autonomous Odoo assistant.

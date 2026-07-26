@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ai_provider_technical,AI provider technical,model_rb_messaging_ai_provider,rb_messaging_automation_core.group_messaging_technical,1,1,1,1
+

@@ -1,0 +1,5 @@
+<odoo noupdate="1">
+  <record id="channel_telegram" model="rb.messaging.channel">
+    <field name="name">Telegram</field><field name="code">telegram</field>
+  </record>
+</odoo>

@@ -1,0 +1,15 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_channel_reader,channel reader,model_rb_messaging_channel,group_messaging_reader,1,0,0,0
+access_channel_manager,channel manager,model_rb_messaging_channel,group_messaging_manager,1,1,1,1
+access_connection_operator,connection operator,model_rb_messaging_connection,group_messaging_operator,1,0,0,0
+access_connection_technical,connection technical,model_rb_messaging_connection,group_messaging_technical,1,1,1,1
+access_identity_operator,identity operator,model_rb_messaging_identity,group_messaging_operator,1,1,1,0
+access_conversation_operator,conversation operator,model_rb_messaging_conversation,group_messaging_operator,1,1,1,0
+access_message_operator,message operator,model_rb_messaging_message,group_messaging_operator,1,1,1,0
+access_template_designer,template designer,model_rb_messaging_template,group_messaging_designer,1,1,1,1
+access_workflow_designer,workflow designer,model_rb_messaging_workflow,group_messaging_designer,1,1,1,1
+access_step_designer,step designer,model_rb_messaging_workflow_step,group_messaging_designer,1,1,1,1
+access_allowed_technical,allowed action technical,model_rb_messaging_allowed_action,group_messaging_technical,1,1,1,1
+access_session_operator,session operator,model_rb_messaging_session,group_messaging_operator,1,1,1,0
+access_event_technical,event technical,model_rb_messaging_event,group_messaging_technical,1,1,1,0
+access_audit_reader,audit reader,model_rb_messaging_audit,group_messaging_reader,1,0,0,0
