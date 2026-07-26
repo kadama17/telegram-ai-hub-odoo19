@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+  <t t-name="telegram_ai_hub.Dashboard">
+    <div class="o_rb_tg_dashboard">
+      <div t-if="state.loading" class="o_rb_tg_loading">
+        <i class="fa fa-spinner fa-spin"/> Loading statistics…
+      </div>
+      <t t-else="">
+        <header class="o_rb_tg_header">
+          <div>
+            <div class="o_rb_tg_eyebrow">Telegram AI Hub</div>
+            <h1>Dashboard</h1>
+            <p>Overview of your Telegram activity in Odoo</p>
+          </div>
+          <button class="btn o_rb_tg_refresh" t-on-click="loadData">
+            <i class="fa fa-refresh"/> Refresh
+          </button>
+        </header>
+
+        <section class="o_rb_tg_kpis">
+          <article class="o_rb_tg_kpi o_rb_tg_kpi_primary">
+            <div class="o_rb_tg_icon"><i class="fa fa-comments"/></div>
+            <span>Conversations</span>
+            <strong t-esc="state.data.conversation_count"/>
+            <small><t t-esc="state.data.automated_count"/> automated</small>
+          </article>
+          <article class="o_rb_tg_kpi">
+            <div class="o_rb_tg_icon"><i class="fa fa-paper-plane"/></div>
+            <span>Messages today</span>
+            <strong t-esc="state.data.incoming_today + state.data.outgoing_today"/>
+            <small><t t-esc="state.data.incoming_today"/> received · <t t-esc="state.data.outgoing_today"/> sent</small>
+          </article>
+          <article class="o_rb_tg_kpi">
+            <div class="o_rb_tg_icon"><i class="fa fa-users"/></div>
+            <span>Authorized users</span>
+            <strong t-esc="state.data.authorized_user_count"/>
+            <small><t t-esc="state.data.active_bot_count"/> active bot(s)</small>
+          </article>
+          <article class="o_rb_tg_kpi">
+            <div class="o_rb_tg_icon"><i class="fa fa-calendar"/></div>
+            <span>Messages (30 days)</span>
+            <strong t-esc="state.data.messages_30d"/>
+            <small><t t-esc="state.data.messages_7d"/> over the last 7 days</small>
+          </article>
+        </section>
+
+        <section class="o_rb_tg_grid">
+          <article class="o_rb_tg_panel o_rb_tg_activity">
+            <div class="o_rb_tg_panel_title">
+              <div><h2>Message activity</h2><p>Last 7 days</p></div>
+              <div class="o_rb_tg_legend"><span class="incoming"/> Incoming <span class="outgoing"/> Outgoing</div>
+            </div>
+            <div class="o_rb_tg_chart">
+              <div class="o_rb_tg_chart_line line1"/><div class="o_rb_tg_chart_line line2"/><div class="o_rb_tg_chart_line line3"/>
+              <div t-foreach="activity" t-as="item" t-key="item.label" class="o_rb_tg_day">
+                <div class="o_rb_tg_bars">
+                  <div class="o_rb_tg_bar incoming" t-att-style="'height:' + item.incomingHeight" t-att-title="item.incoming"/>
+                  <div class="o_rb_tg_bar outgoing" t-att-style="'height:' + item.outgoingHeight" t-att-title="item.outgoing"/>
+                </div>
+                <span t-esc="item.label"/>
+              </div>
+            </div>
+          </article>
+
+          <article class="o_rb_tg_panel o_rb_tg_performance">
+            <div class="o_rb_tg_panel_title"><div><h2>Performance</h2><p>Processed requests</p></div></div>
+            <div class="o_rb_tg_donut" t-att-style="successStyle">
+              <div><strong><t t-esc="state.data.success_rate"/>%</strong><span>success</span></div>
+            </div>
+            <div class="o_rb_tg_performance_stats">
+              <span><i class="ok"/> <strong t-esc="state.data.processed_event_count"/> processed</span>
+              <span><i class="failed"/> <strong t-esc="state.data.failed_event_count"/> failed</span>
+            </div>
+          </article>
+
+          <article class="o_rb_tg_panel">
+            <div class="o_rb_tg_panel_title"><div><h2>Conversation distribution</h2><p>Current operating mode</p></div></div>
+            <div class="o_rb_tg_distribution">
+              <div>
+                <span><i class="automated"/> Automated</span>
+                <strong t-esc="state.data.automated_count"/>
+              </div>
+              <div>
+                <span><i class="human"/> Human support</span>
+                <strong t-esc="state.data.human_count"/>
+              </div>
+            </div>
+          </article>
+
+          <article class="o_rb_tg_panel">
+            <div class="o_rb_tg_panel_title"><div><h2>Recent errors</h2><p>Latest failed processing events</p></div></div>
+            <div t-if="!state.data.recent_errors.length" class="o_rb_tg_empty">
+              <i class="fa fa-check-circle"/> No recent errors
+            </div>
+            <div t-else="" class="o_rb_tg_errors">
+              <div t-foreach="state.data.recent_errors" t-as="error" t-key="error.id">
+                <i class="fa fa-exclamation-circle"/>
+                <span t-esc="error.message"/>
+                <time t-esc="error.date"/>
+              </div>
+            </div>
+          </article>
+        </section>
+      </t>
+    </div>
+  </t>
+</templates>

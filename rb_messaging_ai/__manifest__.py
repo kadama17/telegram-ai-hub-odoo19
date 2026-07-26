@@ -9,5 +9,5 @@
         "security/ir.model.access.csv",
         "views/ai_views.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

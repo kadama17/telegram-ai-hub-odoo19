@@ -1,0 +1,8 @@
+<odoo noupdate="1">
+  <record id="allowed_action_create_crm_lead" model="rb.messaging.allowed.action">
+    <field name="name">Create CRM Lead</field>
+    <field name="model_name">crm.lead</field>
+    <field name="method_name">create_crm_lead</field>
+    <field name="handler">_rb_messaging_create_lead</field>
+  </record>
+</odoo>

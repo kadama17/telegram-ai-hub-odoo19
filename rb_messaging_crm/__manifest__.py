@@ -5,5 +5,5 @@
     "author": "ResilientByte Maroc",
     "depends": ["rb_messaging_automation_core", "crm"],
     "data": ["data/allowed_actions.xml"],
-    "installable": True,
+    "installable": False,
 }

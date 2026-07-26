@@ -13,5 +13,5 @@
         "views/messaging_views.xml",
     ],
     "application": False,
-    "installable": True,
+    "installable": False,
 }

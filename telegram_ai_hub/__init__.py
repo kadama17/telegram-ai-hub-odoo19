@@ -1,1 +1,2 @@
-"""Telegram AI Hub commercial application package."""
+from . import controllers
+from . import models
