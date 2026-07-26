@@ -19,10 +19,10 @@
     <field name="name">rb.messaging.telegram.user.list</field>
     <field name="model">rb.messaging.telegram.user</field>
     <field name="arch" type="xml">
-      <list>
+      <tree>
         <field name="name"/><field name="telegram_id"/><field name="telegram_username"/>
         <field name="odoo_user_id"/><field name="company_id"/><field name="active"/>
-      </list>
+      </tree>
     </field>
   </record>
   <record id="view_telegram_user_form" model="ir.ui.view">
@@ -103,10 +103,6 @@
     <field name="state">code</field>
     <field name="code">action = model.action_open_dashboard()</field>
   </record>
-  <record id="action_telegram_dashboard_client" model="ir.actions.client">
-    <field name="name">Telegram Dashboard</field>
-    <field name="tag">rb_telegram_dashboard</field>
-  </record>
 
   <record id="view_telegram_onboarding_form" model="ir.ui.view">
     <field name="name">rb.telegram.onboarding.wizard.form</field>
@@ -117,14 +113,14 @@
           <field name="step" widget="statusbar" statusbar_visible="welcome,botfather,token,ai,admin,done"/>
         </header>
         <sheet>
-          <div invisible="step != 'welcome'">
+          <div attrs="{'invisible': [('step', '!=', 'welcome')]}">
             <h2>Welcome to Telegram AI Hub</h2>
             <p>This assistant will create the Odoo connection, verify the Telegram bot, install the webhook, configure AI and authorize the first administrator.</p>
             <p>You can leave the wizard at any time and use the manual configuration screens.</p>
             <button name="action_open_manual" type="object" string="Use manual configuration" class="btn-secondary"/>
           </div>
 
-          <div invisible="step != 'botfather'">
+          <div attrs="{'invisible': [('step', '!=', 'botfather')]}">
             <h2>1. Create your bot with BotFather</h2>
             <ol>
               <li>Open BotFather using the button below.</li>
@@ -136,7 +132,7 @@
             <button name="action_open_botfather" type="object" string="Open BotFather" class="btn-primary"/>
           </div>
 
-          <div invisible="step != 'token'">
+          <div attrs="{'invisible': [('step', '!=', 'token')]}">
             <h2>2. Connect Telegram to Odoo</h2>
             <group>
               <field name="company_id"/>
@@ -147,7 +143,7 @@
             <button name="action_test_token" type="object" string="Verify token and continue" class="btn-primary"/>
           </div>
 
-          <div invisible="step != 'ai'">
+          <div attrs="{'invisible': [('step', '!=', 'ai')]}">
             <h2>3. Configure the AI assistant</h2>
             <p>The key is stored only in Odoo and is never added to the module source code.</p>
             <group>
@@ -157,7 +153,7 @@
             <p>You may leave the API key empty and configure the provider manually later.</p>
           </div>
 
-          <div invisible="step != 'admin'">
+          <div attrs="{'invisible': [('step', '!=', 'admin')]}">
             <h2>4. Authorize the first Telegram administrator</h2>
             <p>Enter the permanent numeric Telegram ID. The display name or @username is not used for authentication.</p>
             <group>
@@ -175,7 +171,7 @@
             <button name="action_finish" type="object" string="Install and activate the bot" class="btn-primary"/>
           </div>
 
-          <div invisible="step != 'done'">
+          <div attrs="{'invisible': [('step', '!=', 'done')]}">
             <h2>Your Telegram assistant is ready</h2>
             <group>
               <field name="connection_id"/>
@@ -188,8 +184,8 @@
           </div>
         </sheet>
         <footer>
-          <button name="action_back" type="object" string="Back" invisible="step in ('welcome', 'done')"/>
-          <button name="action_next" type="object" string="Continue" class="btn-primary" invisible="step in ('token', 'admin', 'done')"/>
+          <button name="action_back" type="object" string="Back" attrs="{'invisible': [('step', 'in', ('welcome', 'done'))]}"/>
+          <button name="action_next" type="object" string="Continue" class="btn-primary" attrs="{'invisible': [('step', 'in', ('token', 'admin', 'done'))]}"/>
           <button string="Close" special="cancel" class="btn-secondary"/>
         </footer>
       </form>
@@ -209,7 +205,7 @@
   <menuitem id="menu_telegram_dashboard"
             name="Dashboard"
             parent="telegram_ai_hub.menu_messaging_root"
-            action="action_telegram_dashboard_client"
+            action="action_open_telegram_dashboard"
             sequence="1"/>
   <menuitem id="menu_telegram_onboarding"
             name="Setup Assistant"

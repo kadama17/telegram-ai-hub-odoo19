@@ -200,7 +200,6 @@ class MessagingWorkflowStep(models.Model):
 
     action_type = fields.Selection(
         selection_add=[("ai_assistant", "AI Assistant")],
-        ondelete={"ai_assistant": "cascade"},
     )
     ai_provider_id = fields.Many2one("rb.messaging.ai.provider")
 

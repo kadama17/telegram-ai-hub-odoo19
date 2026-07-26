@@ -1,4 +1,4 @@
-from datetime import timedelta
+from datetime import datetime, timedelta
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
@@ -48,7 +48,7 @@ class TelegramHubDashboard(models.TransientModel):
             event_domain + [("state", "=", "failed")]
         )
         completed_events = processed_events + failed_events
-        now = fields.Datetime.now()
+        now = datetime.now()
         return {
             "connection_count": len(connections),
             "active_bot_count": len(active),
