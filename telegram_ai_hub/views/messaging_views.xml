@@ -36,7 +36,7 @@
       <notebook>
         <page string="Messages">
           <field name="message_ids" readonly="1">
-            <list create="0" edit="0" delete="0" default_order="create_date desc">
+            <tree create="0" edit="0" delete="0" default_order="create_date desc">
               <field name="create_date" string="Date"/>
               <field name="direction" widget="badge"/>
               <field name="message_type"/>
@@ -44,7 +44,7 @@
               <field name="status" widget="badge"/>
               <field name="error_message" optional="hide"/>
               <field name="external_id" optional="hide"/>
-            </list>
+            </tree>
           </field>
         </page>
       </notebook>
@@ -54,7 +54,7 @@
     <field name="name">rb.messaging.message.list</field>
     <field name="model">rb.messaging.message</field>
     <field name="arch" type="xml">
-      <list create="0" edit="0" delete="0" default_order="create_date desc">
+      <tree create="0" edit="0" delete="0" default_order="create_date desc">
         <field name="create_date" string="Date"/>
         <field name="conversation_id"/>
         <field name="direction" widget="badge"/>
@@ -63,7 +63,7 @@
         <field name="status" widget="badge"/>
         <field name="error_message" optional="hide"/>
         <field name="external_id" optional="hide"/>
-      </list>
+      </tree>
     </field>
   </record>
   <record id="view_message_form" model="ir.ui.view">
@@ -99,14 +99,14 @@
     <field name="name">rb.messaging.connection.list</field>
     <field name="model">rb.messaging.connection</field>
     <field name="arch" type="xml">
-      <list>
+      <tree>
         <field name="name"/>
         <field name="channel_id"/>
         <field name="company_id"/>
         <field name="technical_user_id"/>
         <field name="language"/>
         <field name="active" widget="boolean_toggle"/>
-      </list>
+      </tree>
     </field>
   </record>
   <record id="view_connection_form" model="ir.ui.view">
@@ -126,7 +126,7 @@
     <field name="name">rb.messaging.workflow.list</field>
     <field name="model">rb.messaging.workflow</field>
     <field name="arch" type="xml">
-      <list default_order="sequence">
+      <tree default_order="sequence">
         <field name="sequence" widget="handle"/>
         <field name="name"/>
         <field name="trigger_type"/>
@@ -134,14 +134,14 @@
         <field name="channel_ids" widget="many2many_tags"/>
         <field name="company_id"/>
         <field name="active" widget="boolean_toggle"/>
-      </list>
+      </tree>
     </field>
   </record>
   <record id="view_audit_list" model="ir.ui.view">
     <field name="name">rb.messaging.audit.list</field>
     <field name="model">rb.messaging.audit</field>
     <field name="arch" type="xml">
-      <list create="0" edit="0" delete="0" default_order="create_date desc">
+      <tree create="0" edit="0" delete="0" default_order="create_date desc">
         <field name="create_date"/>
         <field name="conversation_id"/>
         <field name="workflow_id"/>
@@ -150,7 +150,7 @@
         <field name="result" widget="badge"/>
         <field name="duration_ms"/>
         <field name="error_message" optional="show"/>
-      </list>
+      </tree>
     </field>
   </record>
   <record id="view_audit_form" model="ir.ui.view">
