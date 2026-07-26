@@ -1,4 +1,4 @@
-# Telegram AI Hub for Odoo 19
+# Telegram AI Hub for Odoo 18
 
 ![Telegram AI Hub](telegram_ai_hub/static/description/cover.png)
 
@@ -45,7 +45,7 @@ English subtitles are available in
 
 ## Compatibility
 
-- Odoo 19.0
+- Odoo 18.0
 - Community and Enterprise
 - Telegram Bot API
 - OpenAI API for AI responses and voice transcription
