@@ -26,7 +26,7 @@ class MessagingAIProvider(models.Model):
     _inherit = ["mail.thread"]
 
     name = fields.Char(required=True, default="OpenAI")
-    active = fields.Boolean(default=False, tracking=True)
+    active = fields.Boolean(default=False, track_visibility="onchange")
     provider_type = fields.Selection(
         [("openai", "OpenAI"), ("compatible", "OpenAI-compatible API")],
         required=True,
@@ -44,7 +44,7 @@ class MessagingAIProvider(models.Model):
     timeout = fields.Integer(default=45)
     max_tool_rounds = fields.Integer(default=5)
     company_id = fields.Many2one(
-        "res.company", required=True, default=lambda self: self.env.company
+        "res.company", required=True, default=lambda self: self.env.user.company_id
     )
     technical_user_id = fields.Many2one(
         "res.users", required=True, default=lambda self: self.env.user
@@ -200,7 +200,6 @@ class MessagingWorkflowStep(models.Model):
 
     action_type = fields.Selection(
         selection_add=[("ai_assistant", "AI Assistant")],
-        ondelete={"ai_assistant": "cascade"},
     )
     ai_provider_id = fields.Many2one("rb.messaging.ai.provider")
 

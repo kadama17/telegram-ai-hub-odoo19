@@ -29,13 +29,13 @@ class MessagingConnection(models.Model):
     _description = "Messaging Connection"
     _inherit = ["mail.thread"]
 
-    name = fields.Char(required=True, tracking=True)
+    name = fields.Char(required=True, track_visibility="onchange")
     uuid = fields.Char(default=lambda self: str(uuid.uuid4()), required=True, readonly=True, copy=False, index=True)
-    channel_id = fields.Many2one("rb.messaging.channel", required=True, ondelete="restrict", tracking=True)
+    channel_id = fields.Many2one("rb.messaging.channel", required=True, ondelete="restrict", track_visibility="onchange")
     channel_code = fields.Char(related="channel_id.code", store=True)
-    company_id = fields.Many2one("res.company", required=True, default=lambda self: self.env.company)
+    company_id = fields.Many2one("res.company", required=True, default=lambda self: self.env.user.company_id)
     technical_user_id = fields.Many2one("res.users", required=True, default=lambda self: self.env.user)
-    active = fields.Boolean(default=False, tracking=True)
+    active = fields.Boolean(default=False, track_visibility="onchange")
     language = fields.Selection(selection=lambda self: self.env["res.lang"].get_installed(), default=lambda self: self.env.lang)
     webhook_url = fields.Char(compute="_compute_webhook_url")
     _sql_constraints = [("uuid_unique", "unique(uuid)", "Connection UUID must be unique.")]
@@ -73,7 +73,7 @@ class MessagingIdentity(models.Model):
     chat_id = fields.Char(index=True)
     username = fields.Char()
     partner_id = fields.Many2one("res.partner", ondelete="set null")
-    company_id = fields.Many2one("res.company", required=True, default=lambda self: self.env.company)
+    company_id = fields.Many2one("res.company", required=True, default=lambda self: self.env.user.company_id)
     language = fields.Char()
     verified = fields.Boolean(default=False)
     consent_operational = fields.Boolean(default=False)
@@ -105,9 +105,9 @@ class MessagingConversation(models.Model):
         ("waiting_customer", "Waiting for customer"), ("human", "Transferred to operator"),
         ("processing", "Processing"), ("resolved", "Resolved"), ("closed", "Closed"),
         ("blocked", "Blocked"), ("error", "Error"),
-    ], default="new", required=True, tracking=True, index=True)
-    bot_active = fields.Boolean(default=True, tracking=True)
-    operator_id = fields.Many2one("res.users", tracking=True)
+    ], default="new", required=True, track_visibility="onchange", index=True)
+    bot_active = fields.Boolean(default=True, track_visibility="onchange")
+    operator_id = fields.Many2one("res.users", track_visibility="onchange")
     last_message_at = fields.Datetime(index=True)
     unread_count = fields.Integer(default=0)
     message_ids = fields.One2many("rb.messaging.message", "conversation_id")
@@ -159,7 +159,7 @@ class MessagingTemplate(models.Model):
     name = fields.Char(required=True, translate=True)
     body = fields.Text(required=True, translate=True)
     channel_id = fields.Many2one("rb.messaging.channel")
-    company_id = fields.Many2one("res.company", default=lambda self: self.env.company)
+    company_id = fields.Many2one("res.company", default=lambda self: self.env.user.company_id)
 
     @api.model
     def render_text(self, template, variables):
@@ -186,7 +186,7 @@ class MessagingWorkflow(models.Model):
     ], default="message", required=True)
     trigger_value = fields.Char()
     channel_ids = fields.Many2many("rb.messaging.channel")
-    company_id = fields.Many2one("res.company", required=True, default=lambda self: self.env.company)
+    company_id = fields.Many2one("res.company", required=True, default=lambda self: self.env.user.company_id)
     step_ids = fields.One2many("rb.messaging.workflow.step", "workflow_id")
 
     def matches(self, message):
