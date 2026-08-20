@@ -9,7 +9,10 @@ remain enforced.
 
 ## Product demo
 
-[Watch or download the English narrated Full HD demo](telegram_ai_hub/static/description/demo_en.mp4)
+[Watch or download the English narrated Full HD live demo](telegram_ai_hub/static/description/demo_en.mp4)
+
+The demo contains real chatbot requests executed against a live Odoo database,
+including contact creation, CRM opportunity creation and business-data retrieval.
 
 ## Documentation
 
