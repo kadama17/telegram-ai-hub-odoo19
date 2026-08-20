@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Telegram AI Hub — Installation and User Guide</title>
+</head>
+<body>
+  <h1>Telegram AI Hub — Installation and User Guide</h1>
+  <p><strong>Support:</strong> contact@kone-adama.com · WhatsApp: +212 781 488 538</p>
+
+  <h2>1. Requirements</h2>
+  <ul>
+    <li>Odoo Community or Enterprise on Odoo.sh or an on-premise server.</li>
+    <li>A public HTTPS URL reachable by Telegram.</li>
+    <li>A Telegram account that can access the official BotFather.</li>
+    <li>An OpenAI API key supplied and controlled by the customer.</li>
+  </ul>
+
+  <h2>2. Install the module</h2>
+  <ol>
+    <li>Copy the <code>telegram_ai_hub</code> folder into an Odoo addons path.</li>
+    <li>Restart the Odoo service.</li>
+    <li>Enable developer mode and update the Apps list.</li>
+    <li>Search for <strong>Telegram AI Hub</strong> and click Install.</li>
+  </ol>
+
+  <h2>3. Create the Telegram bot</h2>
+  <ol>
+    <li>Open Telegram and start a conversation with <strong>@BotFather</strong>.</li>
+    <li>Send <code>/newbot</code>.</li>
+    <li>Choose the display name and a username ending in <code>bot</code>.</li>
+    <li>Copy the generated token and keep it confidential.</li>
+  </ol>
+
+  <h2>4. Run the Odoo setup assistant</h2>
+  <ol>
+    <li>Open <strong>Telegram AI Hub → Configuration → Setup Assistant</strong>.</li>
+    <li>Paste the Telegram bot token and test the connection.</li>
+    <li>Select the active bot connection.</li>
+    <li>Install the webhook and confirm that Odoo reports success.</li>
+    <li>Configure the AI provider and authorize the first Telegram user.</li>
+  </ol>
+
+  <h2>5. Configure the AI provider</h2>
+  <ol>
+    <li>Open <strong>Telegram AI Hub → Configuration → AI Providers</strong>.</li>
+    <li>Create or open the provider.</li>
+    <li>Enter the API key, endpoint and response model.</li>
+    <li>Select a transcription model if voice messages are required.</li>
+    <li>Test the connection and activate the provider.</li>
+  </ol>
+
+  <h2>6. Authorize employees</h2>
+  <ol>
+    <li>Ask the employee to send a message to the bot.</li>
+    <li>Open <strong>Authorized Telegram Users</strong> in Odoo.</li>
+    <li>Use the permanent numeric Telegram ID, not only the display name or username.</li>
+    <li>Link the identity to the corresponding internal Odoo user.</li>
+    <li>Enable only the required contact, CRM, sales and accounting permissions.</li>
+  </ol>
+
+  <h2>7. Example requests</h2>
+  <ul>
+    <li>“List the unpaid customer invoices.”</li>
+    <li>“Show the detailed lines of invoice INV/2026/0001.”</li>
+    <li>“Give me the products and quantities of sales order S00042.”</li>
+    <li>“Create a contact named Maria Lopez with email maria@example.com.”</li>
+    <li>“Create a CRM opportunity for Atlas Company.”</li>
+    <li>“How many units of Product A are currently available?”</li>
+    <li>“What appointments do I have this week?”</li>
+  </ul>
+
+  <h2>8. Voice messages</h2>
+  <p>Send a Telegram voice note as you would send a text request. The configured transcription model converts the audio to text, and the assistant processes the resulting request with the same access controls.</p>
+
+  <h2>9. Human handover</h2>
+  <p>When a request needs manual intervention, transfer the conversation to an Odoo operator. The operator can review the history, reply, close the conversation or resume automated handling.</p>
+
+  <h2>10. Troubleshooting</h2>
+  <h3>The bot does not answer</h3>
+  <ul>
+    <li>Test the Telegram token.</li>
+    <li>Confirm the Odoo base URL uses a valid public HTTPS certificate.</li>
+    <li>Reinstall and verify the webhook.</li>
+    <li>Check that the connection and AI provider are active.</li>
+    <li>Review the conversation and message error fields in Odoo.</li>
+  </ul>
+  <h3>The user is denied access</h3>
+  <ul>
+    <li>Verify the permanent Telegram numeric ID.</li>
+    <li>Confirm the linked Odoo user is active and internal.</li>
+    <li>Review Odoo groups, record rules and Telegram capability flags.</li>
+  </ul>
+  <h3>Invoice or order lines are missing</h3>
+  <ul>
+    <li>Confirm the linked Odoo user can read the parent document and its lines.</li>
+    <li>Use the exact document reference in the request.</li>
+    <li>Check the message error and AI tool audit information.</li>
+  </ul>
+
+  <h2>11. Installation assistance</h2>
+  <p>ResilientByte Maroc accompanies customers during initial installation and configuration. Contact us after purchase with the Odoo version, deployment type and preferred availability. Never send production passwords or API keys in a public message.</p>
+</body>
+</html>
