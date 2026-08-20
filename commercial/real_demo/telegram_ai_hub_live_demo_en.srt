@@ -1,0 +1,27 @@
+1
+00:00:00,000 --> 00:00:14,150
+Welcome to this live Telegram AI Hub demonstration. Every chatbot response shown in this video was generated from a real Telegram conversation connected to an Odoo database. Only dedicated demonstration records are displayed.
+
+2
+00:00:14,400 --> 00:00:29,573
+For this demonstration, the assistant has created a contact named Demo Customer August 2026 and a CRM opportunity named Telegram AI Hub Demo Deal. Here, I enter a new request directly in Telegram.
+
+3
+00:00:29,823 --> 00:00:44,677
+The chatbot queries Odoo and returns the two records created during this live session. It displays the demonstration contact, email address, opportunity, linked contact, stage, expected revenue and probability.
+
+4
+00:00:44,927 --> 00:00:55,985
+This is real Odoo data retrieval, not a scripted chatbot answer. Each request is processed through approved Odoo tools and remains limited by the permissions assigned to the linked employee.
+
+5
+00:00:56,235 --> 00:01:11,872
+Employees can use natural English to ask about contacts, CRM, invoices, sales orders, products, stock, payments and appointments. Telegram voice requests are also supported when transcription is configured.
+
+6
+00:01:12,122 --> 00:01:23,069
+Administrators authorize each permanent Telegram numeric identity, link it to an internal Odoo user and explicitly select the business capabilities that person may use.
+
+7
+00:01:23,319 --> 00:01:38,474
+The Odoo dashboard monitors conversations, messages, authorized employees, success rates and errors. ResilientByte Maroc also provides assistance with installation and initial configuration. Contact us for a guided demo.
